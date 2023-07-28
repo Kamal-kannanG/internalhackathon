@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+<body>
+    <table border="1"></table>
+    <button><a href="index.html">Back to form</a></button>
+    <script>
+        const get=async()=>{
+            const data=await fetch('http://localhost:3000')
+            const d=await data.json();
+            console.log(d);
+            content=`
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Registration Number</th>
+                <th>Phone Number</th>
+                <th>E-mail</th>
+                <th>Date of Birth</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Zip Code</th>
+            </tr>
+            `;
+            d.forEach(e => {
+                content+=`
+                <tr>
+                    <td>${e.fname}</td>
+                    <td>${e.lname}</td>
+                    <td>${e.regno}</td>
+                    <td>${e.phoneNo}</td>
+                    <td>${e.email}</td>
+                    <td>${e.dob}</td>
+                    <td>${e.age}</td>
+                    <td>${e.gender}</td>
+                    <td>${e.dept}</td>
+                    <td>${e.year}</td>
+                    <td>${e.address}s</td>
+                    <td>${e.city}</td>
+                    <td>${e.state}</td>
+                    <td>${e.country}</td>
+                    <td>${e.zip}</td>
+                </tr>
+                `;
+            });
+            const t=document.querySelector('table');
+            t.innerHTML=content;
+        }
+        get();
+    </script>
+</body>
+</html>

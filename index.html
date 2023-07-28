@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .Box{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 6px;
+        }
+        .inputs{
+            margin: 1px 5px;
+        }
+        input{
+            border: solid black 1px;
+            height: 25px;
+            width: 200px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        .subB{
+            background-color: blue;
+            color: white;
+            
+        }
+        .redirectB{
+            background: green;
+            color: white;
+        }
+        
+    </style>
+    <title>Student Details Form</title>
+</head>
+<body>
+    <div class="Box">
+        <h1>Student Details Form</h1>
+        <form>
+            <div class="inputs">
+                <label for="fname">First Name:</label>
+                <input type="text" name="fname" placeholder="First Name">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="lname">Last Name:</label>
+                <input type="text" name="lname" placeholder="Last Name">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="regno">Registration Number:</label>
+                <input type="number" name="regno" placeholder="Registration Number">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="phoneNo">Phone Number:</label>
+                <input type="number" name="phoneNo" placeholder="Phone Number">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" placeholder="E-mail">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" name="dob" placeholder="DOB">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="age">Age:</label>
+                <input type="number" name="age" placeholder="age">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="gender">Gender:</label>
+                <input type="text" name="gender" placeholder="Gender">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="dept">Department:</label>
+                <input type="text" name="dept" placeholder="Department">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="year">Year:</label>
+                <input type="number" name="year" placeholder="Year">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="address">Address:</label>
+                <input type="text" name="address" placeholder="Address">
+            </div>
+            <br>
+            <div class="inputs">
+            <label for="city">City:</label>
+            <input type="text" name="city" placeholder="City">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="state">State:</label>
+                <input type="text" name="state" placeholder="State">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="country">Country:</label>
+                <input type="text" name="country" placeholder="Country">
+            </div>
+            <br>
+            <div class="inputs">
+                <label for="zip">Zip Code:</label>
+                <input type="text" name="zip" placeholder="Zip code">
+            </div>
+            <br>
+            <button class="subB" type="submit">Submit</button>
+            <button class="redirectB"><a href="data.html">Student Details</a></button>
+        </form>
+    </div>
+    <script>
+        const post=async(data)=>{
+            console.log('inside post method');
+            const res=await fetch('http://localhost:3000',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            const pres=await res.json();
+            console.log(pres);
+        }
+        const form=document.querySelector('form');
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            const f=new FormData(form);
+            const data=Object.fromEntries(f);
+            post(data);
+        })
+    </script>
+</body>
+</html>
